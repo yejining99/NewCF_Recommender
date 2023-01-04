@@ -23,5 +23,17 @@ The algorithm shows in the following steps
 
 ## What is Upper Bound formula?
 The reason that why using upper bound expression is that we could give more suitable genre category to users by considering the rating count. It will be more understandable if you think about the following examples. Let's say that a user gave a rating of 4 and 3.9 for genre a and b. In fact, there is not much difference between 4 and 3.9. But means are the only reason why Genre a is chosen. In fact, the user only listened to two genre A songs. Therefore, genre b seems more appropriate to the user. Therefore, we used the upper bound formula to weight the genre that user heard more about to prevent this problem.
+![upperbount](https://user-images.githubusercontent.com/93263147/210547163-e03f7298-dd03-40a2-99e3-bd9edc6282e7.png)
 
+## Results
+We try to achieve various results through our project. First of all, we compare the running time between original SVD algorithm and the algorithms we made. Using the time module within Python, the algorithm could be determined how long it would take to run. The results are as follows
+||Computing Time|
+|:---:|:---:|
+|Original SGD|590sec|
+|Proposed model|60sec|
 
+While original SVD takes 590 minutes, we can see that our algorithm takes only 60 minutes. Also, we assume the situation that new user come and express time complexity. Computing the SVD of and matrix has $O(mnmin(m,m))$ complexity.
+
+We can see it becomes computationally expensive for large data sets. But our proposed model used only the category data in which target user belong. So based on the assumption that all categories have same number of songs and put the number of categories as k, time complexity of our proposed model is $O(m\frac{n}{k}min(\frac{n}{k},m))$.
+
+Considering the situation in which new users come in, original SVD takes the same amount of time because it needs to rerun using all of the data, but our algorithm can reduce the time even more because new user can be applied in most appropriate category after identifying the taste and then we just need to run the algorithm of that category. In reality, new songs and new users come in so actively, so if we use our algorithm, we can present the recommended song more quickly to users.
